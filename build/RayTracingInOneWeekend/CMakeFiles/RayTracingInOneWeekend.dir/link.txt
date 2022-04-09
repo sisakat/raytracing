@@ -1,1 +1,0 @@
-/usr/bin/g++  -g   CMakeFiles/RayTracingInOneWeekend.dir/src/main.cpp.o  -o RayTracingInOneWeekend  ../extern/spdlog/libspdlogd.a -lpthread 

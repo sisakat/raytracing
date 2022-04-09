@@ -4,24 +4,33 @@
 #include <iostream>
 #include <spdlog/spdlog.h>
 
-bool hitSphere(const Point3& center, double radius, const Ray& ray)
+double hitSphere(const Point3& center, double radius, const Ray& ray)
 {
     Vec3 oc = ray.origin() - center;
     double a = ray.direction().dot(ray.direction());
     double b = 2.0 * oc.dot(ray.direction());
     double c = oc.dot(oc) - radius * radius;
     double discriminant = b * b - 4 * a * c;
-    return discriminant > 0;
+    if (discriminant < 0)
+    {
+        return -1.0;
+    }
+    else
+    {
+        return (-b - sqrt(discriminant)) / (2.0 * a);
+    }
 }
 
 Color rayColor(const Ray& r)
 {
-    if (hitSphere(Point3(0, 0, -1), 0.5, r))
+    auto t = hitSphere(Point3(0, 0, -1), 0.5, r);
+    if (t > 0.0)
     {
-        return Color(1, 0, 0);
+        Vec3 n = (r.at(t) - Vec3(0, 0, -1)).normalized();
+        return 0.5 * Color(n.x() + 1, n.y() + 1, n.z() + 1);
     }
     Vec3 unit_direction = r.direction().normalized();
-    auto t = 0.5 * (unit_direction.y() + 1.0);
+    t = 0.5 * (unit_direction.y() + 1.0);
     // linear blending
     // blendedValue = (1 - t) * startValue + t * endValue
     return (1.0 - t) * Color(1.0, 1.0, 1.0) + t * Color(0.5, 0.7, 1.0);

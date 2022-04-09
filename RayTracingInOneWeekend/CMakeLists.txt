@@ -7,4 +7,5 @@ target_include_directories(${PROJECT_NAME} PRIVATE
     include)
 
 target_link_libraries(${PROJECT_NAME} PRIVATE
-    spdlog::spdlog)
+    spdlog::spdlog
+    Eigen3::Eigen)

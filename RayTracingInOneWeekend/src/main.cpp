@@ -1,5 +1,6 @@
 #include <iostream>
 #include <spdlog/spdlog.h>
+#include <Eigen/Core>
 
 int main(int argc, char* argv[])
 {
@@ -11,6 +12,7 @@ int main(int argc, char* argv[])
 
     for (int j = image_height - 1; j >= 0; --j)
     {
+        std::cerr << fmt::format("\rScanlines remaining: {}", j) << std::endl;
         for (int i = 0; i < image_width; ++i)
         {
             auto r = double(i) / (image_width - 1);
@@ -24,4 +26,6 @@ int main(int argc, char* argv[])
             std::cout << fmt::format("{} {} {}", ir, ig, ib) << std::endl;
         }
     }
+
+    std::cerr << "Done" << std::endl;
 }

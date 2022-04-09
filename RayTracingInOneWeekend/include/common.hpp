@@ -11,6 +11,7 @@ const double infinity = std::numeric_limits<double>::infinity();
 const double pi = 3.1415926535897932385;
 const double deg = pi / 180.0;
 const double rad = 1.0;
+const double eps = 1e-8;
 
 /**
  * @brief Returns a random double [0, 1)
@@ -62,7 +63,9 @@ inline Vec3 randomInUnitSphere()
     }
 }
 
-inline Vec3 randomUnitVector()
+inline Vec3 randomUnitVector() { return randomInUnitSphere().normalized(); }
+
+inline Vec3 reflect(const Vec3& v, const Vec3& n)
 {
-    return randomInUnitSphere().normalized();
+    return v - 2 * v.dot(n) * n;
 }

@@ -1,10 +1,14 @@
 #pragma once
 #include "ray.hpp"
+#include "common.hpp"
+
+class Material;
 
 struct HitRecord
 {
     Point3 p;
     Vec3 normal;
+    std::shared_ptr<Material> mat_ptr;
     double t;
     bool front_face;
 

@@ -1,6 +1,7 @@
 #include "camera.hpp"
 #include "common.hpp"
 #include "hittable_list.hpp"
+#include "material.hpp"
 #include "sphere.hpp"
 
 #include <spdlog/spdlog.h>
@@ -16,8 +17,13 @@ Color rayColor(const Ray& r, const Hittable& world, int depth)
 
     if (world.hit(r, 0.001, infinity, rec))
     {
-        Point3 target = rec.p + rec.normal + randomUnitVector();
-        return 0.5 * rayColor(Ray(rec.p, target - rec.p), world, depth - 1);
+        Ray scattered;
+        Color attenuation;
+        if (rec.mat_ptr->scatter(r, rec, attenuation, scattered))
+        {
+            return attenuation.cwiseProduct(rayColor(scattered, world, depth - 1));
+        }
+        return Color(0, 0, 0);
     }
 
     Vec3 unit_direction = r.direction().normalized();
@@ -30,15 +36,24 @@ Color rayColor(const Ray& r, const Hittable& world, int depth)
 int main(int argc, char* argv[])
 {
     const auto aspect_ratio = 16.0 / 9.0;
-    const int image_width = 400;
+    const int image_width = 800;
     const int image_height = static_cast<int>(image_width / aspect_ratio);
     const int samples_per_pixel = 100;
-    const int max_depth = 3;
+    const int max_depth = 50;
 
     // World
     HittableList world;
-    world.add(std::make_shared<Sphere>(Point3(0, 0, -1), 0.5));
-    world.add(std::make_shared<Sphere>(Point3(0, -100.5, -1), 100));
+    auto material_ground = std::make_shared<Lambertian>(Color(0.8, 0.8, 0.0));
+    auto material_center = std::make_shared<Lambertian>(Color(0.7, 0.3, 0.3));
+    auto material_left = std::make_shared<Metal>(Color(0.8, 0.8, 0.8));
+    auto material_right = std::make_shared<Metal>(Color(0.8, 0.6, 0.2));
+
+    world.add(
+        std::make_shared<Sphere>(Point3(0.0, -100.5, -1.0), 100.0, material_ground));
+    world.add(
+        std::make_shared<Sphere>(Point3(0.0, 0.0, -1.0), 0.5, material_center));
+    world.add(std::make_shared<Sphere>(Point3(-1.0, 0.0, -1.0), 0.5, material_left));
+    world.add(std::make_shared<Sphere>(Point3(1.0, 0.0, -1.0), 0.5, material_right));
 
     // Camera
     Camera camera;

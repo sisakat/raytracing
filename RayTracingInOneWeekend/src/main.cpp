@@ -27,7 +27,7 @@ int main(int argc, char* argv[])
     auto origin = Point3(0, 0, 0);
     auto horizontal = Vec3(viewport_width, 0, 0);
     auto vertical = Vec3(0, viewport_height, 0);
-    auto lower_left_corner =
+    Point3 lower_left_corner =
         origin - horizontal / 2 - vertical / 2 - Vec3(0, 0, focal_length);
 
     // Render

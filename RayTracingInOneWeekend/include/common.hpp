@@ -61,3 +61,8 @@ inline Vec3 randomInUnitSphere()
         return p;
     }
 }
+
+inline Vec3 randomUnitVector()
+{
+    return randomInUnitSphere().normalized();
+}

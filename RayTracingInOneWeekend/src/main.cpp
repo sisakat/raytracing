@@ -1,6 +1,7 @@
+#include "color.hpp"
+
 #include <iostream>
 #include <spdlog/spdlog.h>
-#include <Eigen/Core>
 
 int main(int argc, char* argv[])
 {
@@ -19,11 +20,8 @@ int main(int argc, char* argv[])
             auto g = double(j) / (image_height - 1);
             auto b = 0.25;
 
-            int ir = static_cast<int>(255.999 * r);
-            int ig = static_cast<int>(255.999 * g);
-            int ib = static_cast<int>(255.999 * b);
-
-            std::cout << fmt::format("{} {} {}", ir, ig, ib) << std::endl;
+            Color pixel_color(r, g, b);
+            writeColor(std::cout, pixel_color);
         }
     }
 

@@ -1,7 +1,8 @@
 project(RayTracingInOneWeekend)
 
 add_executable(${PROJECT_NAME}
-    src/main.cpp)
+    src/main.cpp
+    src/color.cpp)
 
 target_include_directories(${PROJECT_NAME} PRIVATE
     include)

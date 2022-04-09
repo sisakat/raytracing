@@ -47,8 +47,8 @@ int main(int argc, char* argv[])
             Color pixel_color(0, 0, 0);
             for (int s{0}; s < samples_per_pixel; ++s)
             {
-                auto u = double(i) / (image_width - 1);
-                auto v = double(j) / (image_height - 1);
+                auto u = double(i + randomDouble()) / (image_width - 1);
+                auto v = double(j + randomDouble()) / (image_height - 1);
                 Ray r = camera.getRay(u, v);
                 pixel_color += rayColor(r, world);
             }

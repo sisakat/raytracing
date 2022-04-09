@@ -39,3 +39,25 @@ inline double clamp(double x, double min, double max)
 #include "color.hpp"
 #include "ray.hpp"
 #include "types.hpp"
+
+inline Vec3 randomVector()
+{
+    return Vec3(randomDouble(), randomDouble(), randomDouble());
+}
+
+inline Vec3 randomVector(double min, double max)
+{
+    return Vec3(randomDouble(min, max), randomDouble(min, max),
+                randomDouble(min, max));
+}
+
+inline Vec3 randomInUnitSphere()
+{
+    while (true)
+    {
+        auto p = randomVector(-1, 1);
+        if (p.squaredNorm() >= 1)
+            continue;
+        return p;
+    }
+}

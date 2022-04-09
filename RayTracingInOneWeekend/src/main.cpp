@@ -7,17 +7,17 @@
 double hitSphere(const Point3& center, double radius, const Ray& ray)
 {
     Vec3 oc = ray.origin() - center;
-    double a = ray.direction().dot(ray.direction());
-    double b = 2.0 * oc.dot(ray.direction());
-    double c = oc.dot(oc) - radius * radius;
-    double discriminant = b * b - 4 * a * c;
+    double a = ray.direction().squaredNorm();
+    double half_b = oc.dot(ray.direction());
+    double c = oc.squaredNorm() - radius * radius;
+    double discriminant = half_b * half_b - a * c;
     if (discriminant < 0)
     {
         return -1.0;
     }
     else
     {
-        return (-b - sqrt(discriminant)) / (2.0 * a);
+        return (-half_b - sqrt(discriminant)) / a;
     }
 }
 

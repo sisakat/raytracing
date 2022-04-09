@@ -1,0 +1,42 @@
+[
+{
+  "directory": "/home/stefan/git/raytracing/build/extern/spdlog",
+  "command": "/usr/bin/g++  -DSPDLOG_COMPILED_LIB -I/home/stefan/git/raytracing/extern/spdlog/include  -g   -std=c++11 -o CMakeFiles/spdlog.dir/src/spdlog.cpp.o -c /home/stefan/git/raytracing/extern/spdlog/src/spdlog.cpp",
+  "file": "/home/stefan/git/raytracing/extern/spdlog/src/spdlog.cpp"
+},
+{
+  "directory": "/home/stefan/git/raytracing/build/extern/spdlog",
+  "command": "/usr/bin/g++  -DSPDLOG_COMPILED_LIB -I/home/stefan/git/raytracing/extern/spdlog/include  -g   -std=c++11 -o CMakeFiles/spdlog.dir/src/stdout_sinks.cpp.o -c /home/stefan/git/raytracing/extern/spdlog/src/stdout_sinks.cpp",
+  "file": "/home/stefan/git/raytracing/extern/spdlog/src/stdout_sinks.cpp"
+},
+{
+  "directory": "/home/stefan/git/raytracing/build/extern/spdlog",
+  "command": "/usr/bin/g++  -DSPDLOG_COMPILED_LIB -I/home/stefan/git/raytracing/extern/spdlog/include  -g   -std=c++11 -o CMakeFiles/spdlog.dir/src/color_sinks.cpp.o -c /home/stefan/git/raytracing/extern/spdlog/src/color_sinks.cpp",
+  "file": "/home/stefan/git/raytracing/extern/spdlog/src/color_sinks.cpp"
+},
+{
+  "directory": "/home/stefan/git/raytracing/build/extern/spdlog",
+  "command": "/usr/bin/g++  -DSPDLOG_COMPILED_LIB -I/home/stefan/git/raytracing/extern/spdlog/include  -g   -std=c++11 -o CMakeFiles/spdlog.dir/src/file_sinks.cpp.o -c /home/stefan/git/raytracing/extern/spdlog/src/file_sinks.cpp",
+  "file": "/home/stefan/git/raytracing/extern/spdlog/src/file_sinks.cpp"
+},
+{
+  "directory": "/home/stefan/git/raytracing/build/extern/spdlog",
+  "command": "/usr/bin/g++  -DSPDLOG_COMPILED_LIB -I/home/stefan/git/raytracing/extern/spdlog/include  -g   -std=c++11 -o CMakeFiles/spdlog.dir/src/async.cpp.o -c /home/stefan/git/raytracing/extern/spdlog/src/async.cpp",
+  "file": "/home/stefan/git/raytracing/extern/spdlog/src/async.cpp"
+},
+{
+  "directory": "/home/stefan/git/raytracing/build/extern/spdlog",
+  "command": "/usr/bin/g++  -DSPDLOG_COMPILED_LIB -I/home/stefan/git/raytracing/extern/spdlog/include  -g   -std=c++11 -o CMakeFiles/spdlog.dir/src/cfg.cpp.o -c /home/stefan/git/raytracing/extern/spdlog/src/cfg.cpp",
+  "file": "/home/stefan/git/raytracing/extern/spdlog/src/cfg.cpp"
+},
+{
+  "directory": "/home/stefan/git/raytracing/build/extern/spdlog",
+  "command": "/usr/bin/g++  -DSPDLOG_COMPILED_LIB -I/home/stefan/git/raytracing/extern/spdlog/include  -g   -std=c++11 -o CMakeFiles/spdlog.dir/src/fmt.cpp.o -c /home/stefan/git/raytracing/extern/spdlog/src/fmt.cpp",
+  "file": "/home/stefan/git/raytracing/extern/spdlog/src/fmt.cpp"
+},
+{
+  "directory": "/home/stefan/git/raytracing/build/RayTracingInOneWeekend",
+  "command": "/usr/bin/g++  -DSPDLOG_COMPILED_LIB -I/home/stefan/git/raytracing/RayTracingInOneWeekend/include -I/home/stefan/git/raytracing/extern/spdlog/include  -g   -o CMakeFiles/RayTracingInOneWeekend.dir/src/main.cpp.o -c /home/stefan/git/raytracing/RayTracingInOneWeekend/src/main.cpp",
+  "file": "/home/stefan/git/raytracing/RayTracingInOneWeekend/src/main.cpp"
+}
+]

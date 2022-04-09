@@ -1,0 +1,8 @@
+/home/stefan/git/raytracing/build/CMakeFiles/rebuild_cache.dir
+/home/stefan/git/raytracing/build/CMakeFiles/edit_cache.dir
+/home/stefan/git/raytracing/build/extern/spdlog/CMakeFiles/edit_cache.dir
+/home/stefan/git/raytracing/build/extern/spdlog/CMakeFiles/rebuild_cache.dir
+/home/stefan/git/raytracing/build/extern/spdlog/CMakeFiles/spdlog.dir
+/home/stefan/git/raytracing/build/RayTracingInOneWeekend/CMakeFiles/rebuild_cache.dir
+/home/stefan/git/raytracing/build/RayTracingInOneWeekend/CMakeFiles/edit_cache.dir
+/home/stefan/git/raytracing/build/RayTracingInOneWeekend/CMakeFiles/RayTracingInOneWeekend.dir

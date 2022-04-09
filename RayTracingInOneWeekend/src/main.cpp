@@ -33,7 +33,7 @@ int main(int argc, char* argv[])
     const int image_width = 400;
     const int image_height = static_cast<int>(image_width / aspect_ratio);
     const int samples_per_pixel = 100;
-    const int max_depth = 50;
+    const int max_depth = 3;
 
     // World
     HittableList world;

@@ -4,25 +4,28 @@
 class Camera
 {
 public:
-    Camera(double vfov, double aspect_ratio)
+    Camera(Point3 look_from, Point3 look_at, Vec3 up, double vfov,
+           double aspect_ratio)
     {
         auto theta = vfov * deg;
         auto h = tan(theta / 2);
         auto viewport_height = 2.0 * h;
         auto viewport_width = aspect_ratio * viewport_height;
-        auto focal_length = 1.0;
 
-        m_origin = Point3(0, 0, 0);
-        m_horizontal = Vec3(viewport_width, 0.0, 0.0);
-        m_vertical = Vec3(0.0, viewport_height, 0.0);
-        m_lower_left_corner = m_origin - m_horizontal / 2 - m_vertical / 2 -
-                              Vec3(0, 0, focal_length);
+        Vec3 w = (look_from - look_at).normalized();
+        Vec3 u = up.cross(w).normalized();
+        Vec3 v = w.cross(u);
+
+        m_origin = look_from;
+        m_horizontal = viewport_width * u;
+        m_vertical = viewport_height * v;
+        m_lower_left_corner = m_origin - m_horizontal / 2 - m_vertical / 2 - w;
     }
 
-    Ray getRay(double u, double v) const
+    Ray getRay(double s, double t) const
     {
-        return Ray(m_origin, m_lower_left_corner + u * m_horizontal +
-                                 v * m_vertical - m_origin);
+        return Ray(m_origin, m_lower_left_corner + s * m_horizontal +
+                                 t * m_vertical - m_origin);
     }
 
 private:

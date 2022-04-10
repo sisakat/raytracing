@@ -21,7 +21,8 @@ Color rayColor(const Ray& r, const Hittable& world, int depth)
         Color attenuation;
         if (rec.mat_ptr->scatter(r, rec, attenuation, scattered))
         {
-            return attenuation.cwiseProduct(rayColor(scattered, world, depth - 1));
+            return attenuation.cwiseProduct(
+                rayColor(scattered, world, depth - 1));
         }
         return Color(0, 0, 0);
     }
@@ -48,13 +49,16 @@ int main(int argc, char* argv[])
     auto material_left = std::make_shared<Dialectric>(1.5);
     auto material_right = std::make_shared<Metal>(Color(0.8, 0.6, 0.2), 0.0);
 
-    world.add(
-        std::make_shared<Sphere>(Point3(0.0, -100.5, -1.0), 100.0, material_ground));
+    world.add(std::make_shared<Sphere>(Point3(0.0, -100.5, -1.0), 100.0,
+                                       material_ground));
     world.add(
         std::make_shared<Sphere>(Point3(0.0, 0.0, -1.0), 0.5, material_center));
-    world.add(std::make_shared<Sphere>(Point3(-1.0, 0.0, -1.0), 0.5, material_left));
-    world.add(std::make_shared<Sphere>(Point3(-1.0, 0.0, -1.0), -0.4, material_left));
-    world.add(std::make_shared<Sphere>(Point3(1.0, 0.0, -1.0), 0.5, material_right));
+    world.add(
+        std::make_shared<Sphere>(Point3(-1.0, 0.0, -1.0), 0.5, material_left));
+    world.add(
+        std::make_shared<Sphere>(Point3(-1.0, 0.0, -1.0), -0.4, material_left));
+    world.add(
+        std::make_shared<Sphere>(Point3(1.0, 0.0, -1.0), 0.5, material_right));
 
     // Camera
     Camera camera;

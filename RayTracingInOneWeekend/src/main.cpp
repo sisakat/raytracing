@@ -136,12 +136,12 @@ int main(int argc, char* argv[])
                 Ray r = camera.getRay(u, v);
                 pixel_color += rayColor(r, world, max_depth);
             }
-            scan_lines[j][image_width - i - 1] = pixel_color;
+            scan_lines[image_height - j - 1][i] = pixel_color;
         }
     }
 
     const Color* pixels = reinterpret_cast<Color*>(scan_lines.data());
-    for (int i = image_width * image_height - 1; i >= 0; --i)
+    for (int i = 0; i < image_width * image_height; ++i)
     {
         writeColor(std::cout, pixels[i], samples_per_pixel);
     }

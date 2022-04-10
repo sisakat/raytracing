@@ -37,19 +37,23 @@ private:
 class Metal : public Material
 {
 public:
-    Metal(const Color& a) : m_albedo{a} {}
+    Metal(const Color& a, double roughness = 1)
+        : m_albedo{a}, m_roughness{roughness < 1 ? roughness : 1}
+    {
+    }
 
     bool scatter(const Ray& r_in, const HitRecord& rec, Color& attenuation,
                  Ray& scattered) const override
     {
         Vec3 reflected = reflect(r_in.direction().normalized(), rec.normal);
-        scattered = Ray(rec.p, reflected);
+        scattered = Ray(rec.p, reflected + m_roughness * randomInUnitSphere());
         attenuation = m_albedo;
         return (scattered.direction().dot(rec.normal)) > 0;
     }
 
 private:
     Color m_albedo;
+    double m_roughness;
 };
 
 class Dialectric : public Material

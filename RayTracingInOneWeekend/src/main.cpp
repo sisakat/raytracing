@@ -99,7 +99,7 @@ int main(int argc, char* argv[])
     const auto aspect_ratio = 3.0 / 2.0;
     const int image_width = 1200;
     const int image_height = static_cast<int>(image_width / aspect_ratio);
-    const int samples_per_pixel = 500;
+    const int samples_per_pixel = 50;
     const int max_depth = 50;
 
     // World
@@ -120,6 +120,9 @@ int main(int argc, char* argv[])
     std::cout << fmt::format("P3\n{} {}\n255", image_width, image_height)
               << std::endl;
 
+    std::vector<std::array<Color, image_width>> scan_lines(image_height);
+
+    #pragma omp parallel for
     for (int j = image_height - 1; j >= 0; --j)
     {
         std::cerr << fmt::format("\rScanlines remaining: {}", j) << std::endl;
@@ -133,8 +136,14 @@ int main(int argc, char* argv[])
                 Ray r = camera.getRay(u, v);
                 pixel_color += rayColor(r, world, max_depth);
             }
-            writeColor(std::cout, pixel_color, samples_per_pixel);
+            scan_lines[j][image_width - i - 1] = pixel_color;
         }
+    }
+
+    const Color* pixels = reinterpret_cast<Color*>(scan_lines.data());
+    for (int i = image_width * image_height - 1; i >= 0; --i)
+    {
+        writeColor(std::cout, pixels[i], samples_per_pixel);
     }
 
     std::cerr << "Done" << std::endl;
